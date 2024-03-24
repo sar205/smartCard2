@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Card</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+</head>
+
+<body>
+    <div class="container layer1">
+        <div class="layer2">
+            <div class="layer3">
+                <div class="layer4">
+                    <p>Elegance <br> <span>Internation Pvt.</span></p>
+                    <img id="contactImage" src="image.jpg" alt="" width="150px" height="150px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail">
+        <h1>Mohit Parmar</h1>
+
+        <div style="padding: 20px 40px; font-family: 'Times New Roman', Times, serif;" class="formatDeatil">
+
+            <div class="phoneNumber">
+                <a href="tel:8160324083"><i class="fa-solid fa-phone-volume"></i>&nbsp; 8160324083</a>
+            </div>
+            <div class="whatsapp">
+                <a id="whatsappLink" href="https://wa.me/918160324083?text=Hi"><i
+                        class="fa-brands fa-whatsapp"></i>&nbsp; 8160324083</a>
+            </div><br>
+            <div class="location">
+                <a id="locationLink" href="#" onclick="openLocationOnMap('SIGMA UNIVERSITY BARKOL VADODARA')">
+                    <i class="fa-solid fa-location-dot"></i>&nbsp; SIGMA UNIVERSITY BARKOL VADODARA
+                </a>
+            </div><br>
+
+            <div class="location">
+                <a href="https://www.youtube.com/@mithileshpatel96"><i class="fa-brands fa-youtube"></i>&nbsp;
+                    Youtube</a>
+            </div> <br>
+
+            <div class="location">
+                <a href="mailto:anm2115ppat@gmail.com"><i class="fa-light fa-envelope"></i>&nbsp;
+                    anm2115ppat@gmail.com</a>
+
+            </div> <br>
+            <div class="location">
+                <a href="https://skillspeak.in/"><i class="fa-light fa-globe"></i>&nbsp;
+                    Skillspeak.in</a>
+
+            </div>
+
+            <button id="downloadContact" class="btn btn-primary  fixed-bottom-center">Add to Contacts</button>
+        </div>
+    </div>
+
+    
+
+    <script>
+        // Function to download vCard
+        function openLocationOnMap(location) {
+            var url = 'https://maps.google.com/?q=' + encodeURIComponent(location);
+            window.open(url, '_blank');
+        }
+
+        function downloadVCard() {
+            var contactName = "Mohit Parmar";
+            var contactNumber = "8160324083";
+            var contactEmail = "anm2115ppat@gmail.com";
+            var contactLocation = "SIGMA UNIVERSITY BARKOL VADODARA";
+            var contactWebsite = "https://skillspeak.in"; // Add the website link here
+            var contactImage = "image.jpg";
+
+            resizeImage(contactImage, 500, 500, function (resizedImage) {
+                var vCard = "BEGIN:VCARD\n";
+                vCard += "VERSION:3.0\n";
+                vCard += "FN:" + contactName + "\n";
+                vCard += "TEL;TYPE=CELL:" + contactNumber + "\n";
+                vCard += "EMAIL;TYPE=PREF,INTERNET:" + contactEmail + "\n";
+                vCard += "ADR;TYPE=HOME:;;" + contactLocation + "\n";
+                vCard += "URL:" + contactWebsite + "\n"; // Include website link
+                vCard += "PHOTO;ENCODING=b;TYPE=JPEG:" + resizedImage.replace(/^data:image\/(png|jpeg);base64,/, "") + "\n";
+                vCard += "END:VCARD";
+
+                var blob = new Blob([vCard], { type: "text/vcard" });
+                var a = document.createElement("a");
+                a.style.display = "none";
+                document.body.appendChild(a);
+                var url = window.URL.createObjectURL(blob);
+                a.href = url;
+                a.download = contactName + ".vcf";
+                a.click();
+                window.URL.revokeObjectURL(url);
+            });
+        }
+
+        // Function to resize image
+        function resizeImage(imageUrl, maxWidth, maxHeight, callback) {
+            var img = new Image();
+            img.onload = function () {
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+
+                var width = img.width;
+                var height = img.height;
+
+                // Calculate new dimensions while maintaining aspect ratio
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+
+                // Draw image on canvas after resizing
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // Get base64 representation of resized image
+                var resizedImage = canvas.toDataURL('image/jpeg');
+
+                // Call callback function with resized image
+                callback(resizedImage);
+            };
+            img.src = imageUrl;
+        }
+
+        // Call downloadVCard function when the page loads
+        window.onload = function () {
+            downloadVCard();
+        };
+
+        // Call downloadVCard function when the button is clicked
+        document.getElementById("downloadContact").addEventListener("click", function () {
+            downloadVCard();
+        });
+    </script>
+
+
+
+</body>
+
+</html>

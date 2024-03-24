@@ -1,0 +1,128 @@
+
+.layer1 {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background-image: linear-gradient(#5de0e6 20%, rgb(70, 70, 238) 94%);
+}
+
+.layer2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffff;
+    width: 350px;
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.layer3 {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(#5de0e6 40%, rgb(5, 5, 138));
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+}
+
+.layer4 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    align-items: center;
+    background-color: #fff; /* Example background color */
+    width: 250px; /* Adjust as needed */
+    height: 450px; /* Adjust as needed */
+    border-bottom-right-radius: 150px;
+    border-bottom-left-radius: 150px;
+}
+
+.layer4 p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align:center ;
+    font-weight: 900;
+    font-size: 1.7rem;
+    
+    color: rgb(3, 56, 56);
+}
+.layer4 img {
+    position: absolute;
+    bottom: 10px;
+   
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(17, 16, 16) 0px 0px 0px 0px;
+}
+
+.detail h1 {
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 10.8rem;
+    margin-bottom: .6rem;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.phoneNumber a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+
+
+.phoneNumber a i{
+    color: #131212;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.whatsapp a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+}
+.whatsapp a i{
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.location a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.location a i{
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+.nameField h2{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+}
+
+.formatDeatil{
+    display: block;
+    margin: auto;
+    width: 90%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 50px;
+}
+
+.fixed-bottom-center {
+    position: fixed;
+    bottom: 20px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Ensure it's above other content */
+}
+
